@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\JugadoresApiController;
+use App\Http\Controllers\Api\V1\JugadoresApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -9,4 +9,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::get('/api_jugadores', [JugadoresApiController::class,'index_api']);
+Route::get('/jugadores', [JugadoresApiController::class,'index']);

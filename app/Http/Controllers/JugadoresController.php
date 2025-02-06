@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreJugadoresRequest;
 use App\Http\Requests\UpdateJugadoresRequest;
 use App\Models\Jugadores;
+use Illuminate\Http\RedirectResponse;
 
 class JugadoresController extends Controller
 {
@@ -21,17 +22,21 @@ class JugadoresController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('jugadores.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreJugadoresRequest $request)
+    public function store(StoreJugadoresRequest $request): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'nombre' => ['required', 'max:255'],
+            'apellido' => 'required|max:255',
+        ]);
+        return redirect()->route('jugadores.index');
     }
 
     /**

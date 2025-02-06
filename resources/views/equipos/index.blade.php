@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }} class="h-full bg-gray-100"">
 <head>
-@vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
 <body class="h-full">
@@ -114,15 +114,15 @@
 
     <header class="bg-white shadow-sm">
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h2 class="text-2xl/7 font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Jugadores
+            <h2 class="text-2xl/7 font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Equipos
 
 
-                  <button type="button" class="inline-flex items-center rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
+                <button type="button" class="inline-flex items-center rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
                     <svg class="mr-1.5 -ml-0.5 size-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path d="m2.695 14.762-1.262 3.155a.5.5 0 0 0 .65.65l3.155-1.262a4 4 0 0 0 1.343-.886L17.5 5.501a2.121 2.121 0 0 0-3-3L3.58 13.419a4 4 0 0 0-.885 1.343Z" />
+                        <path d="m2.695 14.762-1.262 3.155a.5.5 0 0 0 .65.65l3.155-1.262a4 4 0 0 0 1.343-.886L17.5 5.501a2.121 2.121 0 0 0-3-3L3.58 13.419a4 4 0 0 0-.885 1.343Z" />
                     </svg>
                     Agregar
-                  </button>
+                </button>
             </h2>
 
         </div>
@@ -134,15 +134,14 @@
                 <tr>
                     <th>#</th>
                     <th>nombre</th>
-                    <th>apellido</th>
+
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($jugadores as $key => $jugador)
+                @foreach ($equipos as $key => $jugador)
                     <tr>
                         <td>{{ $jugador->id  }}</td>
-                        <td>{{ $jugador->nombre }}</td>
-                        <td>{{ $jugador->apellido }}</td>
+                        <td>{{ $jugador->equipo }}</td>
 
                     </tr>
                 @endforeach
