@@ -1,4 +1,4 @@
-import { loadJugadores } from "@/app/lib/load-jugadores"
+import { loadJugadores } from "@/lib/load-jugadores"
 import { GetStaticProps } from "next"
 import JugadorComponent from "@/app/components/jugadorComponent"
 

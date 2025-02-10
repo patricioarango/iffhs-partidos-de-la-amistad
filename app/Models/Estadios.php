@@ -9,4 +9,6 @@ class Estadios extends Model
 {
     /** @use HasFactory<\Database\Factories\EstadiosFactory> */
     use HasFactory;
+    protected $table = 'estadios';
+    protected $fillable = ['nombre','direccion'];
 }

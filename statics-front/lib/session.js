@@ -1,5 +1,5 @@
 "use server";
-import { SignJWT } from 'jose'
+import { SignJWT,jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
 
 // source: https://www.youtube.com/watch?v=gGPpB9ojkWU
@@ -15,17 +15,12 @@ export async function encryptSession(payload) {
 }
 
 export async function decryptSession(session) {
-    try {
-        const {payload} = await jwtVerify(session, encodedKey,{algorithms: [ "HS256"]})
-        return payload
-    } catch (error) {
-        console.error(error)
-        return null
-    }
+    const {payload} = await jwtVerify(session, encodedKey,{algorithms: [ "HS256"]})
+    return payload
 }
 
 export async function getUserSession() {
-    const session = cookies().cookies.nextjs_session
+    const session = cookies().get('nextjs_session')?.value
     if (!session) return null
     return await decryptSession(session)
 }

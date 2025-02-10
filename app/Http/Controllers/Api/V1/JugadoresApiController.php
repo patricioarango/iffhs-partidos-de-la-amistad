@@ -10,7 +10,7 @@ class JugadoresApiController extends Controller
 {
     use ApiResponses;
     public function index(){
-        $jugadores = Jugadores::all();
+        $jugadores = Jugadores::with('equipo')->get();
         return $this->ok($jugadores);
     }
 }

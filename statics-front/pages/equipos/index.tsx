@@ -1,4 +1,4 @@
-import { loadEquipos } from "@/app/lib/load-equipos"
+import { loadEquipos } from "@/lib/load-equipos"
 import { GetStaticProps } from "next"
 
 type Equipo = {

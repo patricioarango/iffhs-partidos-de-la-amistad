@@ -2,30 +2,42 @@
 import { cookies } from "next/headers";
 import { encryptSession,getUserSession } from "@/lib/session";
 
-export async function login(email, password) {
+export async function POST(req) {
+    return login(req);
+}
+
+async function login(req) {
+    const { email, password } = await req.json();
+    
     const res = await fetch("http://partidos-de-la-amistad.test/api/v1/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ email, password }),
     });
+    
+    if (!res.ok) {
+        return Response.json({ error: "Invalid credentials" }, { status: res.status });
+    }
     const data = await res.json();
-    const session = await encryptSession(data.access_token);
+    const session = await encryptSession(data);
     const expires = new Date(Date.now() * 1000);
-    cookies().set("nextjs_session", session, {expires,httpOnly: false});
-    return data;
+    cookies().set("nextjs_session", session, {expires,httpOnly: true});
+    return await getUser()
   }
   
-export async function getUser() {
-    const access_token = getUserSession();
-    console.log("access_token decrypted");
-    console.log(access_token);
+async function getUser() {
+    const access_token = await getUserSession();
     const res = await fetch("http://partidos-de-la-amistad.test/api/user", {
         method: "GET",
         credentials: "include", 
-    });
-
-    return res.json();
+        headers: {  
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${access_token.access_token}`      
+            }
+        });
+    const user = await res.json();
+    return Response.json({ user }, { status: 200 });
 }
   
 export async function logout() {

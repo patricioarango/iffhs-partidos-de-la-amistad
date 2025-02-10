@@ -1,6 +1,6 @@
 "use client";
 import { useState } from 'react';
-import { login, getUser } from "@/lib/auth";
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -12,14 +12,19 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    await login(email, password);
-    
-   /* if (!data.ok) {
-        setError(data.message || 'Invalid email or password.'); 
-        return; 
-      }
-    const userData = await getUser();
-    setUser(userData);*/
+    const res = await fetch("/api/login", { 
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      setError(data.error);
+      return;
+    }
+    return data.user
   }
 
   return (
