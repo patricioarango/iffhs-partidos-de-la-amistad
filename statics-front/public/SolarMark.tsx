@@ -1,13 +1,12 @@
 import type { SVGProps } from "react"
 
-export const SolarLogo = (props: SVGProps<SVGSVGElement>) => (
+export const SolarMark = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    viewBox="0 0 50 42"
+    viewBox="0 0 42 42"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    
     <path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -16,3 +15,4 @@ export const SolarLogo = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 )
+
